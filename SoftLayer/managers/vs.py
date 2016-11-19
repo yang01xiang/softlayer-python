@@ -373,10 +373,9 @@ class VSManager(utils.IdentifierMixin, object):
             data['sshKeys'] = [{'id': key_id} for key_id in ssh_keys]
 
         if adn_subnet_id:
-            data.update({
-                "primaryBackendNetworkComponent": {
-                    "networkVlan": {"primarySubnet": {"id": int(adn_private_id)}}}})
-
+            data["primaryBackendNetworkComponent"] = {
+                    "networkVlan": {"primarySubnet": {"id": int(adn_subnet_id)}}}
+        print data
         return data
 
     def wait_for_transaction(self, instance_id, limit, delay=1):
